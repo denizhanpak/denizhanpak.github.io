@@ -9,31 +9,25 @@ redirect_from:
 ---
 Research Statement
 ==========================
-When a ball is placed on the top of a hill, it has potential energy. If for some reason the wind blows
-a little to hard, an earthquake happens, or a small meteor hits the planet, the ball will roll down
-the hill. Based on our understanding of physics this makes perfect sense. Gravity affects all things
-and it causes the ball to roll down the hill. The ball does not choose this, in fact the ball does not
-"choose" much at all. But when my dog Levi is on top of the hill no matter how much I try to stop her
-she will run down before the meteor hits. She too is affect by gravity but its not gravity
-that completely determines her motion. Somehow a bunch of electrical impulses in her relatively small
-head cause her muscles to contract and release and she outruns any ball I let roll down. We call this
-special kind of motion "behavior." Behavior unlike many other kinds of motion isn't governed by a single 
-or small number of forces but emerges from the interaction of many smaller kinds of motion. In 
-that process we start to call that motion a "choice." I am interested understanding the difference 
-between a ball rolling down a hill and behavior. What gives rise to what we call choice? 
-Understanding that question means studying at the most fundamental level how motor 
-control develops. So in short I am interested in motor learning.
+A ball rolls down a hill. My dog runs down a hill. The ball bounces when it hits rock, completely changing
+its trajectory. Levi on the other hand stumbles a bit but regains her balance, and if its big enough, she 
+avoids the rock entirely. In one case there is a system acting on a simple object with a manageable set of
+forces. In the case of my dog, she's a bit more complicated. The wind in her hair, the ground beneath her 
+feet, the muscles in her legs, and the neurons in her brain, are all part of her run. For the first case 
+we have a formal mathematical theory describing how a ball rolls. For Levi we don't. My research interest
+is in that gap. I am interested in building theories of how brains, bodies, and environments interact to
+create adaptive behavior.
 
 About Me
 =========
 I am a PhD student in Intelligent/Interactive Systems at Indiana University. My work focuses on the use
-of artificial intelligence as a modelling tool for cognition and psychology. I use the mathematical and
+of artificial intelligence as a modelling tool for cognition. I use the mathematical and
 computational tools from AI research to build hypothesise of how animal cognition develops. I test those 
 hypothesise against the behavior of real animals to falsify them. I then use those results to build
 better AI tools and hypothesise thus closing the Theory/Experiment loop that makes science so powerful.
 
-Currently I work in the Building a Mind Lab under my primary advisor Justin Wood. The specific AI tools
-we are using currently are "curiosity-motivated" deep reinforcement learning algorithms the animals we
+I work in the Building a Mind Lab under my primary advisor Justin Wood. The specific AI tools
+we are using currently are "curiosity-motivated" deep reinforcement learning algorithms. The animals we
 compare them to are baby chicks raised in Virtual Reality (VR) chambers. VR allows us to build a virtual
 world which is identical for both the animals and the AI models we compare them too. The advantage being
 we can control for nearly all variables in both cases.
