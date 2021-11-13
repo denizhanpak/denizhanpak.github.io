@@ -31,3 +31,10 @@ No gods no controllers: Anarchism and autonomy
     - The distinction between the functional
     and the enacted
     - the distinction between the material and the enacted
+
+6) Situated Embodied Dynamical Perspective for Gamers
+    - Why AI people build AI that plays games
+    - What are the limitations of contextual games
+    - How dynamical games can give us a different perspective
+    - Situated Dynamics
+    - Embodied dynamics
