@@ -1,6 +1,7 @@
 import sys
 import datetime
 import os
+import shutil
 
 if len(sys.argv) != 2:
     print(f"Usage is python post.py [post_name]")
@@ -21,4 +22,4 @@ today = str(datetime.date.today())
 
 post_title = (today+f"-blog-post-{latest_post+1}.md")
 
-os.symlink(sys.argv[1], "../_posts/" + post_title)
+shutil.copy(sys.argv[1], "../_posts/" + post_title)
