@@ -1,7 +1,7 @@
 ---
 title: 'What is this blog?'
 date: 2021-05-14
-permalink: /posts/2021/05/blog-post-1/
+permalink: /posts/2021/05/ThisBlog/
 tags:
   - Introduction
   - Purpose
