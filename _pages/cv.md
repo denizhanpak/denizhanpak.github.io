@@ -11,49 +11,30 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.S. in Math and Computer Science, University of Tennessee - Knoxville, 2019
+* Ph.D in Informatics and Cognitive Science, Indiana University, 2024 (expected)
 
-Work experience
+Research experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* 2020-Present: Research Assistant
+  * Building a Mind Lab, Indiana University – Bloomington
+  * Use machine learning and physics engines for modeling behavior of animals in virtual environments with
+    embodied artificial agents.
+  * Supervisor: Dr. Justin Wood
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* 2019-2020: Research Assistant
+  * Antisemitism Detection Research Project, Indiana University – Bloomington
+  * Develop and maintain software architecture for twitter data collection, annotation, and analysis
+  * Supervisor: Dr. Gunther Jikeli
+
+* 2017-2019: Undergraduate Researcher
+  * Gilchrist Lab, Department of Ecology and Evolutionary Biology, UT – Knoxville
+  * Develop and maintain a software library in C++ used in the analysis of Ribosome Footprint Data
+  * Supervisor: Dr. Michael Gilchrist
   
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
 Publications
 ======
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+
