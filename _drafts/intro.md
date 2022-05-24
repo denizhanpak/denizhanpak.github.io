@@ -8,17 +8,21 @@ tags:
   - Goals
 ---
 
-I don't know if other people have it figured out yet, but I'm still learning to communicate. 
-This blog is practice. I will have hot takes and will be wrong most of the time. Please enjoy.
+I don't know if other people have it figured out yet, but I'm still 
+learning to communicate. This blog is practice. Almost everything 
+will be wrong or at least not right enough.
 
 A Blog of Curiosities
 ======
 Often we think of an expert on a topic as someone who is very knowledgable of a singular (or small
 number of) thing(s). We encourage children to pick something to "be" when they grow up. We force students
-to pick from a fixed set of classes. We "are" whatever job we happen to be doing at the time. This makes
-sense in a world in which efficiency is prized and specialization is rewarded. Being an "expert" 
-in this sense is adaptive. In some places though novelty can be just important as efficiency: art and
-science are clear examples, although maybe novelty matters in more places than we think.
+to pick from a fixed subset of classes. We "are" whatever job we happen to be 
+doing at the time. This makes
+sense in a world in which efficiency is prized and specialization is 
+rewarded. Being an "expert" 
+in this sense is adaptive. In some places though novelty can be just 
+important as efficiency: art and science are clear examples, although 
+maybe novelty matters in more places than we think.
 
 When novelty is necessary, specialization is a mind-killer. New ideas don't come from nothing.
 They are constructed in the moment by combining, comparing, and synthesizing different worlds. 
