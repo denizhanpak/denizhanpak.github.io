@@ -9,17 +9,18 @@ redirect_from:
 ---
 Research Statement
 ==========================
-A ball rolls down a hill. My dog runs down a hill. The ball bounces when it 
+A ball rolls down a hill. My dog runs. The ball bounces when it 
 hits a rock and rolls the 
-other way. Levi on the other hand stumbles a bit but regains her balance. 
-If the rock is big enough, she avoids it entirely. The world acts upon things. 
+other way. Levi stumbles but regains her balance. 
+If the rock is big enough, she jumps off it to gain momentum.
+The world acts upon things. 
 Life acts back.
 I am 
-interested in that difference. To that end, I build 
+interested in understanding that difference. To that end, I build 
 mathematical/computational models of animal behavior. 
 
 My work focuses on the use of artificial intelligence as models for cognition. I use
-mathematical and computational tools from AI to build hypothesise of how animals think and learn. 
+mathematical and computational AI as hypothesise of how animals think and learn. 
 I test those hypothesise against the behavior of real animals to falsify them. I then use 
 those results to build new hypothesise thus closing the Theory/Experiment loop
 that we think makes science work.
