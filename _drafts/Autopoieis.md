@@ -1,5 +1,5 @@
 ---
-title: 'My Definition of Mind'
+title: 'Self-Creation'
 date: 2021-05-14
 permalink: /posts/2021/05/blog-post-1/
 tags:
@@ -11,13 +11,13 @@ tags:
 In the fall of 2019 I took a class called Autopoiesis and Enaction taught by Randall Beer. This course 
 changed everything I thought I knew. 
 
-I started off wanting to build the best robot ever. The goal was to end all labor forever. Of course,
-such a robot would be way smarter than any human. It could solve any problem and do any task. To start
-the search I did what most AI researchers do 
+I started off grad school wanting to build the best robot ever. 
+The goal was to end all labor, neither I nor anyone else should have to work again. Of course,
+such a robot would be way smarter than any human. It could solve any problem and do any task. 
+I couldn't do it alone, I knew that much but I could start with a small slice. For me that slice
+was supposed to be language. I was going to build the part that could listen to people and 
+understand what they asked for. 
 
-Free Will
-==========
-[Wow](https://youtu.be/FYJ1dbyDcrI?t=8). One of the 
 
 A Definition of Life
 ======
@@ -25,9 +25,11 @@ When you ask people whether science works they will probably say yes. Some may p
 many offspring. Others may point to medicine and count the number of lives saved. Chemistry and physics are
 two cornerstones of the power of science. Chemistry and physics have a feature that many other sciences seem
 to still be figuring out. If you ask a physicist what energy is, they can answer with relative certainty. Ask
-a chemist what a chemical is and you will get a standard answer. Ask a biologist what life is and the best they
-can do is a set of 7 rules that don't make any sense. We call this property of a science an ontology (what exists).
-In physics and chemistry ontology is settled in Biology not so much. The question of what is life remains unanswered.
+a chemist what an element is and they will show you on the fanciest of shower curtains. 
+Ask a biologist what life is and the best they
+can do is a 7 rules we learned in high school. We call this property of a science an ontology (what exists).
+In physics and chemistry ontology is settled in Biology not so much. 
+The question of what is life remains unanswered.
 Humberto Maturana proposed a definition. This definition is powerful and has a lot of implications. I will try to
 explain that definition and its consequences. I will not do it justice.
 

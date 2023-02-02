@@ -30,7 +30,7 @@ of the term "Absurd" all had their appeal. However, it was the boulder and hill 
 It wasn't subtle, he laid out the philosophy explicitly. The metaphor was there to summarize not to explain but it 
 resonated more than anything else. For Camus pushing a boulder up a hill was a metaphor for the meaning of life. Our
 constant search for meaning is a pointless task: repetitive and impossible but its not the accomplishment of the task
-that gives life meaning. It is the act of pushing the boulder itself in which is absurd. In the act of 
+that gives life meaning. It is the act of pushing the boulder itself which is absurd. In the act of 
 searching for meaning is where meaning can actually be found. Meaning is not a fixed object to be discovered or even
 created. Meaning is a journey along which the boulder climbs and falls yet we must continue to push on.
 

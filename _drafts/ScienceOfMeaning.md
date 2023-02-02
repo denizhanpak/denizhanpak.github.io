@@ -8,6 +8,8 @@ tags:
   - Autopoiesis
 ---
 
+I 
+
 I want to help contribute to a formal theory of mind. To even begin
 to build a formal theory we need an object to build the theory around.
 There is no consensus about what object that should be. Here I want to
