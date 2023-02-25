@@ -1,0 +1,37 @@
+---
+title: 'Box of Knowledge'
+date: 2021-12-29
+permalink: /posts/4/BoxOfKnowledge/
+tags:
+  - Situatedness
+  - Prose
+  - Embodiment
+  - Epistemology
+---
+
+What I know
+===========
+
+My knowledge sits in a box. Attached to my neck and protected by bone.
+Mine to open and free to take. Any thought I acquire, ready to be shelved.
+Except as I walk down the depths of my mind some things are too dark to see.
+
+Sometimes what gets dark, I forget to pick back up. The
+experiences of infancy, the many breakfasts I ate, the words I've spoken, never to be found
+again. It's almost as if my knowledge is not a box at all but a tub with a leak, albeit with a
+faucet on.
+
+However, my knowledge is not all water. Sometimes what drips in feels different. It remains on the surface
+never mixing. In fact, my knowledge takes many forms from water, to oil, to gas, to air, to rocks, to people.
+My knowledge is not a chalice to be filled but a vibrant mix of many conflicting contradictions ill-posed to
+be interchangeable. Each thought fighting for space trying to survive before their eventual decay. A competition
+where only the fittest survive. My mind is a market of ideas.
+
+In their ruthless expansion sometimes my ideas cooperate, finding ways to survive together where one cannot. 
+Sometimes my ideas resonate and give birth to something brand new. My knowledge is not the sum of the ideas
+but the collective whole of interactions of it's parts. My knowledge is an ecosystem, competing,
+cooperating, coexisting, and contradicting. 
+
+My knowledge is vast because it is an ocean, a forest, a sky, a tree, a house, a friend. My knowledge is
+my niche in space and time. Knowledge doesn't fit in a box, a tub, a market, a hard drive, or a brain. 
+Knowledge is the world in which I live. Living is to know.
