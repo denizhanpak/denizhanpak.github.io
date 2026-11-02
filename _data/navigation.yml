@@ -5,7 +5,10 @@ main:
 
   - title: "Blog Posts"
     url: /year-archive/
-   
+
+  - title: "Virtual Agent Playground"
+    url: /playground/
+
 # - title: "CV"
 #   url: /cv/
     

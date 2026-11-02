@@ -1,0 +1,478 @@
+---
+layout: single
+title: "Virtual Agent Playground"
+permalink: /playground/
+author_profile: true
+playground: true
+excerpt: "Interactive simulations of a Braitenberg vehicle, a one-legged cockroach walker, a swing that pumps itself and an active categorization agent."
+---
+
+{% include base_path %}
+
+<div class="pg" id="playground">
+
+  <p class="pg-intro">
+    Four model agents from my research on classes of adaptive behavior. Each solves a task with a tiny nervous system,
+    coupled to a body and an environment. Pick a task, watch the agent do it, then change its parameters and see how
+    the behavior changes. Everything runs in your browser, in JavaScript ports of the Julia and Mathematica models I use
+    for my figures.
+  </p>
+
+  <div class="pg-tasks" role="tablist" aria-label="Tasks">
+    <button class="pg-task" role="tab" id="pg-tab-approach" aria-controls="pg-approach" aria-selected="true" data-task="approach">
+      <span class="pg-task__name">Approach</span>
+      <span class="pg-task__agent">Braitenberg vehicle</span>
+    </button>
+    <button class="pg-task" role="tab" id="pg-tab-walk" aria-controls="pg-walk" aria-selected="false" tabindex="-1" data-task="walk">
+      <span class="pg-task__name">Walk</span>
+      <span class="pg-task__agent">one-legged cockroach walker</span>
+    </button>
+    <button class="pg-task" role="tab" id="pg-tab-swing" aria-controls="pg-swing" aria-selected="false" tabindex="-1" data-task="swing">
+      <span class="pg-task__name">Swing</span>
+      <span class="pg-task__agent">single-mass swinger</span>
+    </button>
+    <button class="pg-task" role="tab" id="pg-tab-categorize" aria-controls="pg-categorize" aria-selected="false" tabindex="-1" data-task="categorize">
+      <span class="pg-task__name">Categorize</span>
+      <span class="pg-task__agent">active categorization agent</span>
+    </button>
+  </div>
+
+  <!-- ── Approach ─────────────────────────────────────────────────────────────────────────────────────────────── -->
+  <section class="pg-panel" id="pg-approach" role="tabpanel" aria-labelledby="pg-tab-approach" data-task="approach">
+    <div class="pg-lede">
+      <h2>Approach: steer to a goal</h2>
+      <p>
+        A Braitenberg vehicle has two sensors at its front and a motor on each side. Each sensor drives the motor on the
+        <em>opposite</em> side: the wires cross. When the stimulus lies to the right, the right sensor reads more, the
+        left wheel turns faster, and the vehicle swings toward it. A constant forward drive keeps it moving at 1&nbsp;m/s,
+        and a lag makes its turning catch up with its motors.
+      </p>
+    </div>
+
+    <div class="pg-stage">
+      <canvas class="pg-canvas pg-canvas--arena" id="vehicle-world" tabindex="0" role="img"
+        aria-label="An arena with a stimulus and Braitenberg vehicles. Arrow keys move the stimulus."></canvas>
+      <p class="pg-hint">Drag the <span aria-hidden="true">★</span> stimulus to move it. Click anywhere to release a
+        vehicle; drag before letting go to aim it.</p>
+    </div>
+
+    <div class="pg-toolbar">
+      <button class="pg-btn pg-btn--primary" type="button" data-action="toggle">Pause</button>
+      <button class="pg-btn" type="button" data-action="fan">Release a fan of six</button>
+      <button class="pg-btn" type="button" data-action="clear">Clear</button>
+      <label class="pg-speed">Speed
+        <select data-action="speed">
+          <option value="0.25">¼×</option>
+          <option value="0.5">½×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="pg-columns">
+      <div class="pg-box">
+        <h3>Wiring</h3>
+        <div class="pg-presets" role="group" aria-label="Vehicle presets">
+          <button class="pg-chip" type="button" data-preset='{"fl":1,"fr":1,"tau":0.3077,"cd":0.4}' aria-pressed="true">Approach</button>
+          <button class="pg-chip" type="button" data-preset='{"fl":-1,"fr":-1,"tau":0.3077,"cd":0.4}'>Avoid</button>
+          <button class="pg-chip" type="button" data-preset='{"fl":1.5,"fr":0.3,"tau":0.3077,"cd":0.4}'>Wander</button>
+          <button class="pg-chip" type="button" data-preset='{"fl":1.2,"fr":0.9,"tau":0.3077,"cd":0.4}'>Lopsided</button>
+          <button class="pg-chip" type="button" data-preset='{"fl":1,"fr":1,"tau":1.2,"cd":0.4}'>Sluggish</button>
+        </div>
+        <div class="pg-field">
+          <label for="v-fl">Left synapse f<sub>l</sub> <span class="pg-unit">left sensor → right motor</span></label>
+          <input type="range" id="v-fl" data-param="fl" min="-2" max="2" step="0.05" value="1">
+          <output for="v-fl" data-out="fl">1.00</output>
+        </div>
+        <div class="pg-field">
+          <label for="v-fr">Right synapse f<sub>r</sub> <span class="pg-unit">right sensor → left motor</span></label>
+          <input type="range" id="v-fr" data-param="fr" min="-2" max="2" step="0.05" value="1">
+          <output for="v-fr" data-out="fr">1.00</output>
+        </div>
+        <div class="pg-field">
+          <label for="v-tau">Turning lag τ <span class="pg-unit">s</span></label>
+          <input type="range" id="v-tau" data-param="tau" min="0.1" max="1.5" step="0.01" value="0.3077">
+          <output for="v-tau" data-out="tau">0.31</output>
+        </div>
+        <div class="pg-field">
+          <label for="v-cd">Stimulus decay c<sub>d</sub> <span class="pg-unit">per m</span></label>
+          <input type="range" id="v-cd" data-param="cd" min="0.1" max="1" step="0.05" value="0.4">
+          <output for="v-cd" data-out="cd">0.40</output>
+        </div>
+        <p class="pg-note">A negative synapse inhibits its motor. With both negative the vehicle behaves like Braitenberg's
+          uncrossed "coward" and turns away.</p>
+      </div>
+
+      <div class="pg-box">
+        <h3>What these settings do</h3>
+        <p class="pg-region"><span class="pg-swatch" id="vehicle-swatch"></span><strong id="vehicle-region">approach, with overshoot</strong></p>
+        <p class="pg-note" id="vehicle-region-note"></p>
+        <p class="pg-note pg-note--muted">This is how my parameter charts classify the vehicle: by where its heading comes to rest for
+          a goal held still 2&nbsp;m away. In the arena the goal is a point, so a vehicle that approaches drives through
+          it and loops back.</p>
+        <canvas class="pg-canvas pg-canvas--chart" id="vehicle-chart" role="img"
+          aria-label="Distance to the stimulus and heading error of each vehicle over the last 20 seconds."></canvas>
+      </div>
+    </div>
+
+    <details class="pg-model">
+      <summary>The model</summary>
+      <p>Each vehicle moves at the constant speed V along its heading φ, and turns toward the stimulus:</p>
+      <p class="pg-eq">ẋ = V cos φ, &nbsp; ẏ = V sin φ, &nbsp;
+        τ φ̈ = −φ̇ + (δ/d) e<sup>−c<sub>d</sub> r</sup> [ (f<sub>l</sub> − f<sub>r</sub>) / (δ c<sub>d</sub>) − ½(f<sub>l</sub> + f<sub>r</sub>) sin ψ ]</p>
+      <p>Here r is the distance to the stimulus and ψ the heading error, the angle between where the vehicle points and
+        where the stimulus is. The stimulus is S = e<sup>−c<sub>d</sub> r</sup>/c<sub>d</sub>, each sensor reads it at its corner of the
+        vehicle, and each motor's output is its synapse times the opposite sensor's reading. With equal synapses
+        f<sub>l</sub> = f<sub>r</sub> = f the equation is τ φ̈ = −φ̇ − m e<sup>−c<sub>d</sub> r</sup> sin ψ with m = (δ/d) f. That is
+        Fajen and Warren's (2003) law for how people walk to a goal, with sin ψ in place of ψ. The default vehicle is matched to their fit:
+        τ = 1/b = 0.31&nbsp;s, m = k/b = 2.31 /s and c<sub>d</sub> = 0.4 /m, and its paths stay within about a centimetre of theirs.
+        Unequal synapses give it a built-in turn, like a car whose wheels are out of line.</p>
+    </details>
+  </section>
+
+  <!-- ── Walk ─────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  <section class="pg-panel" id="pg-walk" role="tabpanel" aria-labelledby="pg-tab-walk" data-task="walk" hidden>
+    <div class="pg-lede">
+      <h2>Walk: step in rhythm</h2>
+      <p>
+        Beer's one-legged walker is a cockroach with a single leg and a single neuron. The neuron senses the leg's angle.
+        While its output is above ½ the foot is down and the leg pushes the body forward (stance); otherwise the foot is
+        lifted and the leg swings forward (swing). Nothing in it keeps time. The rhythm comes from the loop through the
+        body: the neuron excites itself strongly enough to have two stable states over a range of leg angles, a
+        <em>fold</em>, and the leg runs back and forth between the fold's edges.
+      </p>
+    </div>
+
+    <div class="pg-grid pg-grid--walk">
+      <div class="pg-stage">
+        <canvas class="pg-canvas pg-canvas--walker" id="walker-world" role="img"
+          aria-label="Top view of a cockroach walking up the screen on one leg, with its neuron drawn inside its body."></canvas>
+        <p class="pg-hint">Grab the leg to hold it at an angle. Move it forward until the neuron flips and the foot goes down.</p>
+      </div>
+      <div class="pg-side">
+        <canvas class="pg-canvas pg-canvas--trace" id="walker-trace" role="img"
+          aria-label="Leg angle and neuron output over time, with stance shaded."></canvas>
+        <canvas class="pg-canvas pg-canvas--phase" id="walker-phase" role="img"
+          aria-label="The walker's state in the plane of leg angle and neuron output, over the neuron's fold."></canvas>
+        <dl class="pg-stats" id="walker-stats">
+          <div><dt>Period</dt><dd data-stat="period">–</dd></div>
+          <div><dt>Amplitude</dt><dd data-stat="amp">–</dd></div>
+          <div><dt>Mean leg angle</dt><dd data-stat="centre">–</dd></div>
+          <div><dt>Stride</dt><dd data-stat="stride">–</dd></div>
+        </dl>
+        <p class="pg-note pg-alert" id="walker-alert" hidden></p>
+      </div>
+    </div>
+
+    <div class="pg-toolbar">
+      <button class="pg-btn pg-btn--primary" type="button" data-action="toggle">Pause</button>
+      <button class="pg-btn" type="button" data-action="kick">Kick the leg</button>
+      <button class="pg-btn" type="button" data-action="reset">Restart</button>
+      <label class="pg-speed">Speed
+        <select data-action="speed">
+          <option value="5">slow</option>
+          <option value="12" selected>normal</option>
+          <option value="25">fast</option>
+          <option value="50">very fast</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="pg-columns">
+      <div class="pg-box">
+        <h3>Neuron and body</h3>
+        <div class="pg-presets" role="group" aria-label="Walker presets">
+          <button class="pg-chip" type="button" data-preset='{"w":10,"beta":-5,"tau":0.1,"g":1,"centred":true}' aria-pressed="true">Fold walker</button>
+          <button class="pg-chip" type="button" data-preset='{"w":14,"beta":-7,"tau":0.1,"g":1,"centred":true}'>Wide fold</button>
+          <button class="pg-chip" type="button" data-preset='{"w":6,"beta":-3,"tau":0.1,"g":1,"centred":true}'>Narrow fold</button>
+          <button class="pg-chip" type="button" data-preset='{"w":10,"beta":-3,"tau":0.1,"g":1,"centred":false}'>Off-centre fold</button>
+          <button class="pg-chip" type="button" data-preset='{"w":3,"beta":-1.5,"tau":0.1,"g":1,"centred":true}'>No fold</button>
+          <button class="pg-chip" type="button" data-preset='{"w":3,"beta":-1.5,"tau":1,"g":1,"centred":true}'>Slow neuron</button>
+        </div>
+        <div class="pg-field">
+          <label for="w-w">Self-weight w <span class="pg-unit">the fold's width</span></label>
+          <input type="range" id="w-w" data-param="w" min="0" max="16" step="0.1" value="10">
+          <output for="w-w" data-out="w">10.0</output>
+        </div>
+        <div class="pg-field">
+          <label for="w-beta">Bias β <span class="pg-unit">shifts the fold</span></label>
+          <input type="range" id="w-beta" data-param="beta" min="-12" max="4" step="0.1" value="-5">
+          <output for="w-beta" data-out="beta">−5.0</output>
+        </div>
+        <label class="pg-check"><input type="checkbox" data-param="centred" checked> Keep the fold centred (β = −w/2)</label>
+        <div class="pg-field">
+          <label for="w-tau">Neuron time constant τ</label>
+          <input type="range" id="w-tau" data-param="tau" data-scale="log" min="-1.7" max="0.3" step="0.01" value="-1">
+          <output for="w-tau" data-out="tau">0.10</output>
+        </div>
+        <div class="pg-field">
+          <label for="w-g">Body gain <span class="pg-unit">swing and stance strength</span></label>
+          <input type="range" id="w-g" data-param="g" data-scale="log" min="-0.6" max="0.6" step="0.01" value="0">
+          <output for="w-g" data-out="g">1.00×</output>
+        </div>
+      </div>
+      <div class="pg-box">
+        <h3>Reading the fold</h3>
+        <p class="pg-note">The grey curve in the lower chart is where the neuron would settle if you held the leg still at
+          each angle. For w &gt; 4 it folds back on itself: between its two bends there are two stable outputs (solid)
+          with an unstable one between them (dashed). A fast neuron rides the lower branch while the leg swings forward.
+          At the fold's front edge it jumps up and the foot goes down. Stance then pushes the leg back along the upper
+          branch to the back edge, where the neuron drops and the foot lifts.</p>
+        <p class="pg-note">The fold sets the step's amplitude, and the body's gains and the neuron's speed set its period.
+          Take the fold away (w ≤ 4) and a fast neuron can no longer hold a decision: the leg stalls at one angle. A
+          slow neuron can still walk without a fold, because its lag stands in for the fold's memory.</p>
+      </div>
+    </div>
+
+    <details class="pg-model">
+      <summary>The model</summary>
+      <p>The leg has angle φ (forward positive) and angular velocity ω. The neuron has state y and output o = σ(y + β), with σ the
+        logistic function. It senses the leg angle through the gain S<sub>W</sub> = 30/π:</p>
+      <p class="pg-eq">τ ẏ = −y + w o + S<sub>W</sub> φ</p>
+      <p><strong>Swing</strong> (o &lt; ½, foot up): ω̇ = α<sub>max</sub>(1 − 2o), which pushes the leg forward, and the body stands still.
+        <strong>Stance</strong> (o &gt; ½, foot down): ω̇ = a<sub>max</sub>(1 − 2o) cos²φ / d − 2ω² tan φ, which pushes the leg back. The
+        foot stays put, so the body moves forward at −d ω / cos²φ, where d = L cos φ is fixed when the foot goes down. The
+        foot goes down when o rises through ½ and lifts when it falls through ½. The leg has length L = 15 and stops at
+        ±30°. The gains are Beer's (2010): α<sub>max</sub> = 1/40 and a<sub>max</sub> = 1/20. The paper's walker has w = 10, β = −5
+        and τ = 0.1, and walks with a period of 26.2 time units and an amplitude of 16°.</p>
+    </details>
+  </section>
+
+  <!-- ── Swing ────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  <section class="pg-panel" id="pg-swing" role="tabpanel" aria-labelledby="pg-tab-swing" data-task="swing" hidden>
+    <div class="pg-lede">
+      <h2>Swing: pump it up</h2>
+      <p>
+        A swing with a single mass on a rope that stretches like a spring. The swinger can only move the mass along the
+        rope, out from the pivot or in toward it, and has one motor neuron to do it with. The neuron senses how fast
+        the mass moves along the rope and pushes it further the same way. It never senses the swing's angle. Turn up
+        the neuron's gain and the mass starts to bob on the rope by itself. Turn it up further and the bobbing slows
+        until it falls into step with the swing, two bobs to every swing, as a child stands and squats twice in each
+        swing. The swing then pumps itself up.
+      </p>
+    </div>
+
+    <div class="pg-grid pg-grid--swing">
+      <div class="pg-stage">
+        <canvas class="pg-canvas pg-canvas--swing" id="swing-world" tabindex="0" role="img"
+          aria-label="A swing seen from the side: the pivot, the springy rope and the mass, with the neuron's push along the rope. The arrow keys push the swing."></canvas>
+        <p class="pg-hint">Grab the mass to hold it, and let go to drop the swing from there. The arrow keys push it.</p>
+      </div>
+      <div class="pg-side">
+        <canvas class="pg-canvas pg-canvas--swingtrace" id="swing-trace" role="img"
+          aria-label="Swing angle, the rope's stretch and the neuron's output over the last 20 seconds."></canvas>
+        <canvas class="pg-canvas pg-canvas--diagram" id="swing-diagram" role="img"
+          aria-label="Where the swing ends up at each gain A from three starts, and where it is now."></canvas>
+        <p class="pg-legend"><span class="pg-legend__item"><span class="pg-key pg-key--dot pg-key--nudge"></span>from a nudge</span>
+          <span class="pg-legend__item"><span class="pg-key pg-key--dot pg-key--drop"></span>from a drop at 90°</span>
+          <span class="pg-legend__item"><span class="pg-key pg-key--dot pg-key--spin"></span>from a spin</span>
+          <span class="pg-legend__item"><span class="pg-key pg-key--dot pg-key--now"></span>now</span>
+          <span class="pg-legend__item">× the rope ran away</span></p>
+        <dl class="pg-stats" id="swing-stats">
+          <div><dt>Swing amplitude</dt><dd data-stat="amp">–</dd></div>
+          <div><dt>Swing period</dt><dd data-stat="period">–</dd></div>
+          <div><dt>Bob period</dt><dd data-stat="bob">–</dd></div>
+          <div><dt>Bobs per swing</dt><dd data-stat="ratio">–</dd></div>
+        </dl>
+        <p class="pg-note pg-alert" id="swing-alert" hidden></p>
+      </div>
+    </div>
+
+    <div class="pg-toolbar">
+      <button class="pg-btn pg-btn--primary" type="button" data-action="toggle">Pause</button>
+      <button class="pg-btn" type="button" data-action="push">Push the swing</button>
+      <button class="pg-btn" type="button" data-action="reset">Restart</button>
+      <label class="pg-speed">Speed
+        <select data-action="speed">
+          <option value="0.25">¼×</option>
+          <option value="0.5">½×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="pg-columns">
+      <div class="pg-box">
+        <h3>Neuron and body</h3>
+        <div class="pg-presets" role="group" aria-label="Swing presets">
+          <button class="pg-chip" type="button" data-preset='{"A":8,"rho":2,"k":100,"b":0.3}'>Still</button>
+          <button class="pg-chip" type="button" data-preset='{"A":25,"rho":2,"k":100,"b":0.3}'>Bobbing</button>
+          <button class="pg-chip" type="button" data-preset='{"A":36,"rho":2,"k":100,"b":0.3}'>On the edge</button>
+          <button class="pg-chip" type="button" data-preset='{"A":50,"rho":2,"k":100,"b":0.3}' aria-pressed="true">Swinging</button>
+          <button class="pg-chip" type="button" data-preset='{"A":90,"rho":2,"k":100,"b":0.3}'>Looping</button>
+        </div>
+        <div class="pg-field">
+          <label for="s-A">Gain A <span class="pg-unit">how hard the neuron pushes</span></label>
+          <input type="range" id="s-A" data-param="A" min="0" max="100" step="1" value="50">
+          <output for="s-A" data-out="A">50</output>
+        </div>
+        <div class="pg-field">
+          <label for="s-rho">Sensitivity ρ <span class="pg-unit">to the mass's speed</span></label>
+          <input type="range" id="s-rho" data-param="rho" min="0.5" max="4" step="0.1" value="2">
+          <output for="s-rho" data-out="rho">2.0</output>
+        </div>
+        <div class="pg-field">
+          <label for="s-k">Rope stiffness k <span class="pg-unit">sets the bob's pace</span></label>
+          <input type="range" id="s-k" data-param="k" min="80" max="200" step="5" value="100">
+          <output for="s-k" data-out="k">100</output>
+        </div>
+        <div class="pg-field">
+          <label for="s-b">Swing friction b <span class="pg-unit">per s</span></label>
+          <input type="range" id="s-b" data-param="b" min="0" max="1" step="0.05" value="0.3">
+          <output for="s-b" data-out="b">0.30</output>
+        </div>
+        <p class="pg-note">On the edge, a nudge dies away but a swing that is already high keeps going: push it a few
+          times and see.</p>
+      </div>
+      <div class="pg-box">
+        <h3>Reading the diagram</h3>
+        <p class="pg-note">Each dot in the lower chart is where the swing ends up after 200&nbsp;s at that gain, from one
+          of three starts: a nudge, a drop from 90° and a spin over the top. Above, its swing's amplitude, or the band
+          at the top if it loops; below, how far the mass bobs along the rope. The ring is the swing now.</p>
+        <p class="pg-note" id="swing-reading"></p>
+        <p class="pg-note">Where the starts end up in different places, the swing has more than one behavior at that
+          gain, and which one you see depends on its history.</p>
+      </div>
+    </div>
+
+    <details class="pg-model">
+      <summary>The model</summary>
+      <p>The swing has angle θ (0 hanging down) and angular velocity Ω. The rope's rest length is 1&nbsp;m, and the mass sits
+        a stretch r beyond it, moving along the rope at v. The neuron's output u pushes the mass outward when positive
+        and inward when negative:</p>
+      <p class="pg-eq">Ω̇ = −g sin θ / (1 + r) − b Ω, &nbsp;
+        v̇ = u / (1 + r²) + g cos θ + (1 + r) Ω² − k r − c v, &nbsp;
+        u̇ = ϕ (A tanh(ρ v) − u)</p>
+      <p>The swing's angle obeys a damped pendulum's equation for the rope's present length, so the swing slows when the rope
+        is long and speeds up when it is short. Along the rope the mass feels gravity's share g cos θ, the swing's
+        centrifugal pull (1 + r) Ω², the rope's spring −k r and damping −c v, and the neuron's push, which weakens as
+        1/(1 + r²) the further the mass is from the rope's rest length. The neuron relaxes at rate ϕ toward A tanh(ρ v).
+        It senses the mass's speed along the rope and, with a positive gain, pushes it further the way it is already
+        going. The defaults are those of my notebook: g = 9.81, b = 0.3, ρ = 2, ϕ = 20, k = 100 and c = 20, which makes
+        the rope's spring critically damped.</p>
+      <p>Linearized at the rest, the bob's characteristic polynomial is λ³ + (c + ϕ) λ² + (cϕ + k − aϕρA) λ + kϕ, with
+        a = 1/(1 + r*²) and the rest's stretch r* = g/k. The rest loses its stability at the Hopf bifurcation
+        (c + ϕ)(cϕ + k − aϕρA) = kϕ, at A ≈ 11.4, and the mass starts to bob with period 2π / √(kϕ/(c + ϕ)) = 0.89&nbsp;s.
+        That is too fast for the swing, whose own period is 2.1&nbsp;s. The swing is pumped only once the bob has slowed to
+        half the swing's period.</p>
+    </details>
+  </section>
+
+  <!-- ── Categorize ───────────────────────────────────────────────────────────────────────────────────────────── -->
+  <section class="pg-panel" id="pg-categorize" role="tabpanel" aria-labelledby="pg-tab-categorize" data-task="categorize" hidden>
+    <div class="pg-lede">
+      <h2>Categorize: catch circles, avoid lines</h2>
+      <p>
+        An object falls toward an agent that can only move left and right and sees through seven distance rays. If the
+        object is a circle it must end up underneath it, within 30 of its centre. If it is a line it must get out of the
+        way. Circles and lines are the same width, so one glance can't tell them apart: the agent has to move to find out.
+        Its brain is a small, left–right symmetric network of neurons, evolved to do the task.
+      </p>
+    </div>
+
+    <div class="pg-grid pg-grid--cat">
+      <div class="pg-stage">
+        <canvas class="pg-canvas pg-canvas--scene" id="cat-world" tabindex="0" role="img"
+          aria-label="A falling object above the agent and its seven rays. Arrow keys nudge the agent."></canvas>
+        <canvas class="pg-canvas pg-canvas--rays" id="cat-rays" role="img"
+          aria-label="The seven rays' readings, left to right: white when a ray sees nothing near, black when the object is close."></canvas>
+        <p class="pg-hint">The strip shows what each of the seven rays reads, left to right: white is far, black is close.
+          Up close a circle reads about 15 nearer than a line of the same height (its bottom hangs below its centre); the
+          strip's exponential scale spends its greys on short rays so the difference shows.
+          Drag the agent to push it off course: as long as the object stays in its view, it recovers.
+          Between drops, drag it to choose where the next object falls.</p>
+      </div>
+      <div class="pg-side">
+        <canvas class="pg-canvas pg-canvas--brain" id="cat-brain" role="img"
+          aria-label="The agent's neurons and their connections, filled by their outputs."></canvas>
+        <canvas class="pg-canvas pg-canvas--paths" id="cat-paths" role="img"
+          aria-label="The agent's position relative to the object as the object falls, for each trial so far."></canvas>
+        <p class="pg-legend"><span class="pg-legend__item"><span class="pg-key pg-key--circle"></span>circle trials</span>
+          <span class="pg-legend__item"><span class="pg-key pg-key--line"></span>line trials</span>
+          <span class="pg-legend__item"><span class="pg-key pg-key--zone"></span>catch zone</span></p>
+      </div>
+    </div>
+
+    <p class="pg-status" id="cat-status" aria-live="polite"></p>
+
+    <div class="pg-toolbar">
+      <button class="pg-btn pg-btn--primary" type="button" data-action="drop">Drop</button>
+      <button class="pg-btn" type="button" data-action="toggle">Pause</button>
+      <button class="pg-btn" type="button" data-action="ten">Run the ten starts</button>
+      <button class="pg-btn" type="button" data-action="clear">Clear</button>
+      <label class="pg-speed">Speed
+        <select data-action="speed">
+          <option value="5">slow</option>
+          <option value="15" selected>normal</option>
+          <option value="35">fast</option>
+          <option value="80">very fast</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="pg-columns">
+      <div class="pg-box">
+        <h3>Agent</h3>
+        <label class="pg-select">
+          <span class="pg-visually-hidden">Agent</span>
+          <select id="cat-agent"></select>
+        </label>
+        <p class="pg-note" id="cat-agent-note"></p>
+      </div>
+      <div class="pg-box">
+        <h3>Trials</h3>
+        <div class="pg-presets" role="radiogroup" aria-label="Falling object">
+          <button class="pg-chip" type="button" role="radio" data-shape="random" aria-checked="true">Random</button>
+          <button class="pg-chip" type="button" role="radio" data-shape="circle" aria-checked="false">Circle</button>
+          <button class="pg-chip" type="button" role="radio" data-shape="line" aria-checked="false">Line</button>
+        </div>
+        <div class="pg-field">
+          <label for="c-d">Start offset Δx <span class="pg-unit">agent minus object</span></label>
+          <input type="range" id="c-d" data-param="d" min="-50" max="50" step="1" value="20">
+          <output for="c-d" data-out="d">20</output>
+        </div>
+        <label class="pg-check"><input type="checkbox" data-param="randomStart" checked> Random start offset</label>
+        <label class="pg-check"><input type="checkbox" data-param="auto" checked> Keep dropping</label>
+        <p class="pg-score" id="cat-score"></p>
+      </div>
+    </div>
+
+    <details class="pg-model">
+      <summary>Advanced configuration</summary>
+      <div class="pg-presets pg-strip-scale" role="radiogroup" aria-label="Strip scale">
+        <span class="pg-strip-scale__label" aria-hidden="true">Strip scale</span>
+        <button class="pg-chip" type="button" role="radio" data-scale="exp" aria-checked="true">Exponential</button>
+        <button class="pg-chip" type="button" role="radio" data-scale="linear" aria-checked="false">Linear</button>
+        <button class="pg-chip" type="button" role="radio" data-scale="log" aria-checked="false">Log</button>
+        <button class="pg-chip" type="button" role="radio" data-scale="loglog" aria-checked="false">Log-log</button>
+      </div>
+      <p>How a ray's length maps to the strip's grey. Linear spreads the greys evenly over the 220 of a ray; the curved
+        scales spend most of them on short rays, where circles and lines differ.</p>
+    </details>
+
+    <details class="pg-model">
+      <summary>The model</summary>
+      <p>The agent (Beer 2003) is a disc of diameter 30 at the bottom of the world. Seven rays fan out over 30°
+        from its top, each 220 long. Ray j gives the input I<sub>j</sub> = 10 (220 − its length to the object)/220. The
+        neurons form a continuous-time recurrent neural network,</p>
+      <p class="pg-eq">τ<sub>i</sub> ẏ<sub>i</sub> = −y<sub>i</sub> + Σ<sub>k</sub> W<sub>ik</sub> σ(y<sub>k</sub> + θ<sub>k</sub>) + Σ<sub>j</sub> U<sub>ij</sub> I<sub>j</sub></p>
+      <p>with every neuron connected to every neuron and to every ray. The network is mirror-symmetric: each left
+        neuron L<sub>i</sub> has a twin R<sub>i</sub> with mirrored weights, and odd-sized brains add a midline neuron C. L₁
+        and R₁ drive the body with the force F = 5 (o<sub>R₁</sub> − o<sub>L₁</sub>), and the agent's velocity follows it, v̇ = F − v. The
+        object falls from height 275 at speed 3. Each trial runs 8670 Euler steps of 0.01 until the object reaches the agent.
+        The weights were evolved so that all 100 trials of the task come out right: 50 circles and 50 lines, started
+        1 to 50 to one side, each standing for its mirror image on the other. Every agent here does so. The agents are grouped into families by the angle at
+        which they hold the object's edge in view.</p>
+    </details>
+  </section>
+
+  <noscript><p class="pg-note">The playground needs JavaScript to run its simulations.</p></noscript>
+</div>
+
+<script src="{{ base_path }}/assets/js/playground/models.js"></script>
+<script src="{{ base_path }}/assets/js/playground/agents.js"></script>
+<script src="{{ base_path }}/assets/js/playground/playground.js"></script>
