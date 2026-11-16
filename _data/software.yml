@@ -1,0 +1,69 @@
+# Software page (_pages/software.html). Star counts, last-push dates, pull-request states and READMEs are fetched live
+# from GitHub by assets/js/software.js; what is written here is what shows without JavaScript or when the API is
+# rate-limited.
+
+packages:
+  - name: Dynamica.jl
+    repo: denizhanpak/Dynamica.jl
+    blurb: >-
+      A Julia port of Randall Beer's Dynamica for analysing low-dimensional ODEs: equilibria, bifurcation diagrams,
+      limit cycles and two-parameter bifurcation curves, built on BifurcationKit, with a Pluto notebook that follows
+      Dynamica's tutorial.
+    install: true
+
+  - name: LocalInformation.jl
+    repo: denizhanpak/LocalInformation.jl
+    blurb: >-
+      Local (per-sample) information measures as a companion to Associations.jl: local mutual and conditional mutual
+      information, O-information, KSG estimators and pointwise partial information decomposition, with GPU support.
+    docs: https://denizhanpak.github.io/LocalInformation.jl/dev/
+    install: true
+
+  - name: GenerateDynamicalNetworks.jl
+    repo: denizhanpak/GenerateDynamicalNetworks.jl
+    language: Julia  # GitHub counts its docs/benchmark HTML and calls it an HTML repository
+    blurb: >-
+      Given a transition graph and the mean time spent in each state, builds a noisy dynamical system (Lotka–Volterra,
+      CTRNN, phase oscillator, Hopfield and others) whose switching reproduces both, and reports whether the result is
+      heteroclinic, excitable, ghost or a limit cycle.
+    install: true
+
+research:
+  - name: Between Behaviors
+    repo: denizhanpak/BetweenBehaviors
+    blurb: >-
+      Pluto notebooks that make the figures of the Between Behaviors paper: a CTRNN and a heteroclinic network fitted
+      to worm command-neuron data, and the bifurcation and metastability analyses of the three-node models.
+
+  - name: Behavior Classes
+    repo: denizhanpak/BehaviorClasses
+    playground: true
+    blurb: >-
+      Code, data and figures for the Behavior classes chapter: approach, limb oscillation and categorization, each as a
+      sensorimotor model and a simpler law that describes it.
+
+  - name: Spatialized Brain-Body-Environment System
+    repo: denizhanpak/spatialized-bbe-swing
+    paper: https://doi.org/10.1162/ISAL.a.903
+    blurb: >-
+      Code for Pak, Le Thien and Agostino (2025), "Analysis of a Spatialized Brain-Body-Environment System",
+      ALIFE 2025.
+
+contributions:
+  - repo: JuliaDynamics/Associations.jl
+    pulls:
+      - number: 419
+        title: Add partial information decomposition (I_min and I_MMI)
+      - number: 418
+        title: Add higher-order information measures (TC, DTC, O-information, S-information) and GaussianDecomposition
+      - number: 417
+        title: Fix codified_marginals and GaussianMI for multi-column inputs
+  - repo: JuliaDynamics/ComplexityMeasures.jl
+    pulls:
+      - number: 464
+        title: Fix MillerMadow, ChaoShen and Shrinkage bugs
+  - repo: JuliaDynamics/DelayEmbeddings.jl
+    pulls:
+      - number: 131
+        title: Error if window greater than dataset size in all_neighbors
+        merged: true

@@ -1,0 +1,21 @@
+{% include base_path %}
+{% assign it = include.item %}
+{% assign gh = "https://github.com/" | append: it.repo %}
+<article class="sw-card" data-repo="{{ it.repo }}"{% if it.language %} data-language="{{ it.language }}"{% endif %}>
+  <header class="sw-card__head">
+    <h3 class="sw-card__name"><a href="{{ gh }}">{{ it.name }}</a></h3>
+    <span class="sw-card__meta"></span>
+  </header>
+  <p class="sw-card__blurb">{{ it.blurb }}</p>
+  {% if it.install %}<pre class="sw-card__install"><code>pkg&gt; add {{ gh }}</code></pre>{% endif %}
+  <ul class="sw-card__links">
+    <li><a href="{{ gh }}"><i class="fab fa-fw fa-github" aria-hidden="true"></i>GitHub</a></li>
+    {% if it.docs %}<li><a href="{{ it.docs }}"><i class="fas fa-fw fa-book" aria-hidden="true"></i>Documentation</a></li>{% endif %}
+    {% if it.paper %}<li><a href="{{ it.paper }}"><i class="fas fa-fw fa-file-alt" aria-hidden="true"></i>Paper</a></li>{% endif %}
+    {% if it.playground %}<li><a href="{{ base_path }}/playground/"><i class="fas fa-fw fa-play" aria-hidden="true"></i>Run it in the browser</a></li>{% endif %}
+  </ul>
+  <details class="sw-readme">
+    <summary>README</summary>
+    <div class="sw-readme__body"><p class="sw-note">Loading from GitHub…</p></div>
+  </details>
+</article>

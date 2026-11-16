@@ -1,0 +1,147 @@
+/* Software page (_pages/software.html). Same palette as the playground (playground.css). */
+
+.sw {
+  --sw-ink: #0b0b0b;
+  --sw-ink-2: #52514e;
+  --sw-muted: #898781;
+  --sw-grid: #e1e0d9;
+  --sw-paper: #fbfaf7;
+  --sw-orange: #eb6834;
+  --sw-green: #2f8f5b;
+  --sw-radius: 6px;
+}
+
+.sw .sw-intro { margin-bottom: 1.5em; }
+
+.sw h2 { margin-top: 1.75em; }
+
+.sw-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1em;
+}
+
+.sw-card {
+  padding: 1em 1.15em 0.6em;
+  border: 1px solid var(--sw-grid);
+  border-left: 3px solid var(--sw-orange);
+  border-radius: var(--sw-radius);
+  background: #fff;
+}
+
+.sw-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25em 1em;
+}
+
+.sw .sw-card__name {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.sw-card__name a { text-decoration: none; color: var(--sw-ink); }
+.sw-card__name a:hover { text-decoration: underline; }
+
+.sw-card__meta {
+  font-size: 0.75em;
+  color: var(--sw-muted);
+  white-space: nowrap;
+}
+
+.sw .sw-card__blurb {
+  margin: 0.5em 0 0.6em;
+  font-size: 0.9em;
+}
+
+.sw .sw-card__install {
+  margin: 0 0 0.6em;
+  padding: 0.4em 0.7em;
+  font-size: 0.75em;
+}
+
+.sw .sw-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em 1.25em;
+  margin: 0 0 0.4em;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85em;
+}
+
+.sw .sw-card__links li { margin: 0; }
+
+/* ── Embedded README ───────────────────────────────────────────────────────────────────────────────────────── */
+
+.sw-readme { border-top: 1px solid var(--sw-grid); margin-top: 0.4em; }
+
+.sw-readme > summary {
+  padding: 0.45em 0;
+  font-size: 0.85em;
+  color: var(--sw-ink-2);
+  cursor: pointer;
+}
+
+.sw-readme[open] > summary { color: var(--sw-ink); }
+
+.sw-readme__body {
+  max-height: 32em;
+  overflow: auto;
+  margin-bottom: 0.6em;
+  padding: 0.25em 1em 0.5em;
+  border-radius: var(--sw-radius);
+  background: var(--sw-paper);
+  font-size: 0.85em;
+}
+
+.sw-readme__body h1 { font-size: 1.3em; }
+.sw-readme__body h2 { font-size: 1.15em; margin-top: 1.2em; }
+.sw-readme__body h3 { font-size: 1em; }
+.sw-readme__body img { max-width: 100%; }
+.sw-readme__body table { font-size: 0.95em; display: block; overflow-x: auto; }
+.sw-readme__body pre { font-size: 0.9em; }
+
+/* GitHub's rendered markdown adds a hover anchor icon to each heading. */
+.sw-readme__body .anchor { display: none; }
+
+.sw-note { color: var(--sw-muted); font-style: italic; }
+
+/* ── Contributions ─────────────────────────────────────────────────────────────────────────────────────────── */
+
+.sw .sw-prs { margin-left: 0; padding: 0; list-style: none; }
+
+.sw .sw-pr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2em 0.6em;
+  margin: 0;
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--sw-grid);
+  font-size: 0.9em;
+}
+
+.sw-pr__state {
+  flex: none;
+  min-width: 5.5em;
+  padding: 0.05em 0.5em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  text-align: center;
+  color: #fff;
+  background: var(--sw-muted);
+}
+
+.sw-pr__state.is-open { background: var(--sw-orange); }
+.sw-pr__state.is-merged { background: var(--sw-green); }
+
+.sw-pr__repo {
+  margin-left: auto;
+  font-size: 0.8em;
+  color: var(--sw-muted);
+}
+
+.sw-card__links i { margin-right: 0.3em; }

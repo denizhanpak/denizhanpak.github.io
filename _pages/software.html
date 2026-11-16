@@ -1,0 +1,43 @@
+---
+layout: single
+title: "Software"
+permalink: /software/
+author_profile: true
+software: true
+excerpt: "Julia packages for dynamical systems and information theory, the code behind my papers, and contributions to JuliaDynamics."
+---
+
+{% include base_path %}
+
+<div class="sw" id="software">
+
+  <p class="sw-intro">
+    Julia packages I maintain, the code behind my papers, and pull requests to the JuliaDynamics packages I build on.
+    Each README is fetched from GitHub when you open it, so it is always the current one.
+  </p>
+
+  <h2 id="packages">Julia packages</h2>
+  <div class="sw-grid">
+    {% for p in site.data.software.packages %}{% include software-card.html item=p %}{% endfor %}
+  </div>
+
+  <h2 id="research-code">Research code</h2>
+  <div class="sw-grid">
+    {% for p in site.data.software.research %}{% include software-card.html item=p %}{% endfor %}
+  </div>
+
+  <h2 id="contributions">Contributions</h2>
+  <ul class="sw-prs">
+    {% for c in site.data.software.contributions %}{% for pr in c.pulls %}
+      {% assign url = "https://github.com/" | append: c.repo | append: "/pull/" | append: pr.number %}
+      <li class="sw-pr" data-pr="{{ url }}">
+        <span class="sw-pr__state {% if pr.merged %}is-merged{% else %}is-open{% endif %}">{% if pr.merged %}merged{% else %}in review{% endif %}</span>
+        <a href="{{ url }}">{{ pr.title }}</a>
+        <span class="sw-pr__repo">{{ c.repo | split: "/" | last }} #{{ pr.number }}</span>
+      </li>
+    {% endfor %}{% endfor %}
+  </ul>
+
+</div>
+
+<script src="{{ base_path }}/assets/js/software.js"></script>
